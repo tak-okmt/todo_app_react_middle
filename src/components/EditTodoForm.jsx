@@ -1,11 +1,11 @@
 export default function EditTodoForm({
   currentTodo,
   setIsEditing,
-  onEditFormSubmit,
-  onEditInputChange
+  handleEditFormSubmit,
+  handleEditInputChange
 }) {
   return (
-    <form onSubmit={onEditFormSubmit}>
+    <form onSubmit={handleEditFormSubmit}>
       <h2>TODO追加</h2>
       <label htmlFor="title">タイトル: </label>
       <input
@@ -14,7 +14,7 @@ export default function EditTodoForm({
         name='title'
         placeholder='タイトル'
         value={currentTodo.title}
-        onChange={onEditInputChange}
+        onChange={handleEditInputChange}
       />
       <br /><br />
 
@@ -25,19 +25,19 @@ export default function EditTodoForm({
         cols="30"
         rows="3"
         value={currentTodo.detail}
-        onChange={onEditInputChange}>
+        onChange={handleEditInputChange}>
       </textarea>
       <br /><br />
 
       <label htmlFor="status">ステータス: </label>
-      <select name="status" id="status" value={currentTodo.status} onChange={onEditInputChange}>
+      <select name="status" id="status" value={currentTodo.status} onChange={handleEditInputChange}>
         <option value="notStartYet">未着手</option>
         <option value="inProgress">進行中</option>
         <option value="completed">完了</option>
       </select>
       <br /><br />
 
-      <button type='submit' onClick={onEditFormSubmit}>
+      <button type='submit' onClick={handleEditFormSubmit}>
         更新
       </button>
       <button onClick={() => setIsEditing(false)}>キャンセル</button>

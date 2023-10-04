@@ -1,7 +1,7 @@
 export default function TodoList({
   todos,
-  onEditClick,
-  onDeleteClick
+  handleEditClick,
+  handleDeleteClick
 }) {
   const statusForDisplay = {
     notStartYet: '未着手',
@@ -30,10 +30,10 @@ export default function TodoList({
                 <td>{todo.detail}</td>
                 <td>{statusForDisplay[todo.status]}</td>
                 <td>
-                  <button onClick={() => onEditClick(todo)}>編集</button>
+                  <button onClick={() => handleEditClick(todo)}>編集</button>
                 </td>
                 <td>
-                  <button onClick={() => onDeleteClick(todo)}>削除</button>
+                  <button onClick={() => handleDeleteClick(todo)}>削除</button>
                 </td>
               </tr>
             )

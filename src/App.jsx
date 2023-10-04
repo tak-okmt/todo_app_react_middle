@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
-import AddTodoForm from "./AddTodoForm";
-import EditTodoForm from "./EditTodoForm";
-import TodoList from "./TodoList";
-import FilterTodoForm from './FilterTodoForm';
+import AddTodoForm from "./components/AddTodoForm";
+import EditTodoForm from "./components/EditTodoForm";
+import TodoList from "./components/TodoList";
+import FilterTodoForm from './components/FilterTodoForm';
 
 function App() {
   const [todo, setTodo] = useState({});
   const [todos, setTodos] = useState([]);
+  const [todoId, setTodoId] = useState(1);
 
   const [isEditing, setIsEditing] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({}); // 編集中のTodoリストのstate
 
-  const [filter, setFilter] = useState({ id: '', deadline: '', status: '' });
+  const [filter, setFilter] = useState({});
   const [filteredTodos, setFilteredTodos] = useState([])
 
   function handleFormSubmit(e) {
@@ -24,16 +25,17 @@ function App() {
       setTodos([
         ...todos,
         {
-          id: todos.length + 1,
+          id: todoId,
           title: todo.title,
           detail: todo.detail,
           deadline: todo.deadline,
           status: todo.status || 'notStartYet'
         }
       ])
+      setTodoId((id) => id + 1);
     }
 
-    setTodo({});
+    setTodo({}); // 初期化されていない
   }
 
   function handleInputChange(e) {
@@ -97,28 +99,28 @@ function App() {
         <EditTodoForm
           currentTodo={currentTodo}
           setIsEditing={setIsEditing}
-          onEditFormSubmit={handleEditFormSubmit}
-          onEditInputChange={handleEditInputChange}
+          handleEditFormSubmit={handleEditFormSubmit} // TODO: レビュー指摘反映：名前を統一する
+          handleEditInputChange={handleEditInputChange}
         />
       ) : (
         <AddTodoForm
           todo={todo}
-          onFormSubmit={handleFormSubmit}
-          onInputChange={handleInputChange}
+          handleFormSubmit={handleFormSubmit}
+          handleInputChange={handleInputChange}
         />
       )
       }
+      <br /><br />
+
       <FilterTodoForm
         filter={filter}
-        onInputChange={handleFilterChange}
+        handleFilterChange={handleFilterChange}
       />
-
-      <br /><br />
 
       <TodoList
         todos={filteredTodos}
-        onEditClick={handleEditClick}
-        onDeleteClick={handleDeleteClick}
+        handleEditClick={handleEditClick}
+        handleDeleteClick={handleDeleteClick}
       />
     </div>
   )
