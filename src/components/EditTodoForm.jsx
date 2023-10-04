@@ -29,6 +29,16 @@ export default function EditTodoForm({
       </textarea>
       <br /><br />
 
+      <label htmlFor="deadline">期限: </label>
+      <input
+        type='date'
+        id='deadline'
+        name='deadline'
+        value={currentTodo.deadline}
+        onChange={handleEditInputChange}
+      />
+      <br /><br />
+
       <label htmlFor="status">ステータス: </label>
       <select name="status" id="status" value={currentTodo.status} onChange={handleEditInputChange}>
         <option value="notStartYet">未着手</option>

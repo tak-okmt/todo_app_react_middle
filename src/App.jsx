@@ -35,7 +35,7 @@ function App() {
       setTodoId((id) => id + 1);
     }
 
-    setTodo({}); // 初期化されていない
+    setTodo({}); // HACK: 初期化されていない
   }
 
   function handleInputChange(e) {

@@ -18,6 +18,7 @@ export default function TodoList({
             <th>ID</th>
             <th>タイトル</th>
             <th>詳細</th>
+            <th>期限</th>
             <th>ステータス</th>
           </tr>
         </thead>
@@ -28,6 +29,7 @@ export default function TodoList({
                 <td>{todo.id}</td>
                 <td>{todo.title}</td>
                 <td>{todo.detail}</td>
+                <td>{todo.deadline}</td>
                 <td>{statusForDisplay[todo.status]}</td>
                 <td>
                   <button onClick={() => handleEditClick(todo)}>編集</button>
